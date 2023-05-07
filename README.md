@@ -1,4 +1,10 @@
 # discord-gpt
+
+
+
+![discord.js version](https://img.shields.io/badge/discord.js-v14.10.2-5865F2?style=flat&logo=discord) ![openai version](https://img.shields.io/badge/openai-v3.2.1-222222?style=flat&logo=openai) ![npm version](https://img.shields.io/badge/npm-v18.14.1-brightgreen) ![license](https://img.shields.io/badge/license-MIT-green)
+
+
 Discord GPT: A chatbot powered by OpenAI's GPT-3 for Discord, with natural language processing capabilities and advanced conversational AI. Built with Discord.js and easy to use for developers and users alike.
 
 ## ⚠️ PAY ATTENTION ⚠️ 
