@@ -3,4 +3,4 @@ require('dotenv').config();
 
 const bot = new Bot();
 
-bot.start(process.env.token);
+bot.start(process.env.BOT_TOKEN);
