@@ -3,15 +3,17 @@ const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord.js');
 const fs = require("fs");
 
+/**
+ * BOT GATEWAY INTENTS
+ * * Gateway intents are a way for the bot to declare what events it wishes to receive.
+ * @see Docs https://discordjs.guide/popular-topics/intents.html#privileged-intents
+ * @see Intents https://discord.com/developers/docs/topics/gateway#gateway-intents
+ */
 const options = {
 	intents: [
-		GatewayIntentBits.Guilds,
-        GatewayIntentBits.GuildInvites,
+        GatewayIntentBits.Guilds,
 		GatewayIntentBits.GuildMessages,
         GatewayIntentBits.MessageContent,
-		GatewayIntentBits.GuildVoiceStates,
-		GatewayIntentBits.GuildMessageReactions,
-		
 	]
 }
 
@@ -44,7 +46,7 @@ class Bot extends Client {
 
         const rest = new REST().setToken(token);
 
-        rest.put(Routes.applicationCommands(process.env.clientId), { body: commands })
+        rest.put(Routes.applicationCommands(process.env.CLIENT_ID), { body: commands })
             .then(() => console.log('Successfully registered application commands.'))
             .catch(console.error);
 
