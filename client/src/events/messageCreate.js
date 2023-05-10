@@ -1,4 +1,5 @@
-const { chat } = require('../utils/openai');
+const { chat, moderation  } = require('../utils/openai');
+const { moderationCheck } = require('../utils/security');
 
 module.exports = {
 	name: 'messageCreate',
@@ -40,6 +41,20 @@ module.exports = {
              * ? Maybe it should be done in the request to the API?
              * @see OpenAI Safety best Practices: https://platform.openai.com/docs/guides/safety-best-practices
              */
+
+
+            /**
+             * MODERATE
+             */
+            const classification = await moderation(prompt);
+
+            const moderationChecked = await moderationCheck(classification.data);
+
+           // If the message violates the Content Policy, return a warning message.
+            if(!moderationChecked){
+                await interactionReply.edit("Your message violates OpenAI's Content Policy. Please, try again.");
+                return;
+            }
 
             // Get the response from the chatGPT-3
             const response = await chat(prompt);

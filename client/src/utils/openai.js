@@ -27,8 +27,14 @@ const model = {
     BABBAGE: "",
     CURIE: "curie",
     DAVINCI: "text-davinci-003",
-    GPT3_TURBO: "gpt-3.5-turbo"
+    GPT3_TURBO: "gpt-3.5-turbo",
+    MODERATION: {
+        STABLE: "text-moderation-stable",
+        LATEST: "text-moderation-latest"
+    }
 };
+
+
 
 const role = {
     USER: "user",
@@ -117,7 +123,22 @@ const createChatCompletion = async (prompt) => {
     }
 }
 
+/**
+ * CREATE MODERATION
+ * * Classifies if text violates OpenAI's Content Policy.
+ * @see Documentation https://platform.openai.com/docs/api-reference/moderations/create
+ */
+const createModeration = async (prompt) => {
+    const response = await openai.createModeration({
+        model: model.MODERATION.LATEST,
+        input: prompt,
+    });
+
+    return response;
+}
+
 module.exports = {
     send: createCompletion,
-    chat: createChatCompletion
+    chat: createChatCompletion,
+    moderation: createModeration
 }
